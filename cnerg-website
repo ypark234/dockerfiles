@@ -2,10 +2,10 @@
 
 FROM ubuntu:18.04
 
-RUN apt -y update; apt install -y \
-    && python3-pip \
-    && python3-sphinx \
-RUN pip3 install sphinxcontrib-bibtex
+RUN apt -y update; apt install -y curl python3-distutils \
+  && curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
+  && python3 get-pip.py \
+  && pip3 install -U sphinx sphinxcontrib-bibtex
 
 # Define default command
 CMD ["/bin/bash"]
