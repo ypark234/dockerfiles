@@ -1,0 +1,11 @@
+# Dockerfile for cnerg.github.com website.
+
+FROM ubuntu:18.04
+
+RUN apt -y update; apt install -y \
+    && python3-pip \
+    && python3-sphinx \
+RUN pip3 install sphinxcontrib-bibtex
+
+# Define default command
+CMD ["/bin/bash"]
