@@ -4,8 +4,11 @@ FROM ubuntu:20.04
 ARG py_ver=3
 
 RUN apt update \
+    # Python version-dependent operations.
+    && if [ "${py_ver}" = "2" ] ; then py_ver= ; \
+    else apt -y install python${py_ver}-distutils ; fi \
     # Dependencies.
-    && apt -y install python${py_ver} python${py_ver}-distutils curl \
+    && apt -y install python${py_ver} curl \
     # Install pip.
     && curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
     && python${py_ver} get-pip.py; rm get-pip.py \
