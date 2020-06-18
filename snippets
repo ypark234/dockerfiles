@@ -1,0 +1,13 @@
+FROM ubuntu:20.04
+
+# Python version.
+ARG py_ver=3
+
+RUN apt update \
+    # Dependencies.
+    && apt -y install python${py_ver} python${py_ver}-distutils curl \
+    # Install pip.
+    && curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
+    && python${py_ver} get-pip.py; rm get-pip.py \
+    # Install pytest.
+    && pip${py_ver} install -U pytest
